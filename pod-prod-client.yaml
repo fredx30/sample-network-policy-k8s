@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-prod
+  labels:
+    env: prod
+    app: client
+spec:
+  containers:
+    - name: curl
+      image: docker.io/alpine/curl:latest
+      command:
+        - tail
+        - -f
+        - /dev/null
+      livenessProbe:
+        exec:
+          command:
+            - curl
+            - http://server
+        initialDelaySeconds: 5
+        periodSeconds: 5

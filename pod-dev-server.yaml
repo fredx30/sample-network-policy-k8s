@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: server
+  labels:
+    env: dev
+    app: server
+spec:
+  containers:
+    - name: php-spitback
+      image: ghcr.io/fredx30/php-spitback:master
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server
+  labels:
+    env: dev
+    app: server
+spec:
+  selector:
+    app: server
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
