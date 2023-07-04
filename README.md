@@ -17,9 +17,15 @@ server ingress with `curl http://server`.
 
 #### Conditions
 For the "works on my machine" - setup.
-- Install CNI to "enable" NetworkPolicies
-- Kubernetes
+- Kubernetes (Digital ocean - 1 node)
 
 #### Failure conditions
 - Docker desktop (Does not seem to work)
 - 
+
+### Debug packages for debug pod
+
+````bash
+apt update
+apt install -y iputils-ping net-tools dnsutils curl
+````

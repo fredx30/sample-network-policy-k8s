@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: internet-outbound
+spec:
+  podSelector:
+    matchLabels:
+      internet: outbound
+  policyTypes:
+    - Egress
+  egress:
+    - ports:
+        - port: 80
+        - port: 443
+      to:
+        - ipBlock:
+            # allow all IPs
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 192.168.0.0/16
+              - 172.16.0.0/20
